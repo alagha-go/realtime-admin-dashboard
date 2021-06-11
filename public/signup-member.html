@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./main.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="signup-foam">
+        <label >Name</label>
+        <br>
+        <input id = "name" type="text">
+        <br>
+        
+        <label >email</label>
+        <br>
+        <input id = "email" type="text">
+        <br>
+        
+        <label >phone</label>
+        <br>
+        <input id = "number" type="number">
+        
+        <br>
+        
+        <button onclick="register()">Register</button>
+        
+        <p>already have an account <a onclick="login()">Login</a></p>
+        
+    </div>
+
+
+    <div id="login-foam">
+        <label >Name</label>
+        <br>
+        <input id = "name-log" type="text">
+        <br>
+        
+        <label >email</label>
+        <br>
+        <input id = "email-log" type="text">
+        <br>
+        
+        <label >phone</label>
+        <br>
+        <input id = "number-log" type="number">
+        
+        <br>
+        
+        <button onclick="signin()">login</button>
+        
+        <p>dont have an account<a onclick="signup()">Sign Up</a></p>
+    </div>
+    
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript">
+
+        var socket = io();
+
+        function login(){
+            document.getElementById("signup-foam").style.display = "none";
+            document.getElementById("login-foam").style.display = "block";
+        }
+
+        function signup(){
+            document.getElementById("login-foam").style.display = "none";
+            document.getElementById("signup-foam").style.display = "block";
+        }
+
+        function signin(){
+            var name = document.getElementById("name-log").value;
+            var email = document.getElementById("email-log").value;
+            var number = document.getElementById("number-log").value;
+
+            var member = {
+                "name": name,
+                "email": email,
+                "phone": number,
+            };
+
+            socket.emit('member log', member);
+            socket.on('member log', function(msg) {
+                console.log(msg);
+                if (msg === "member logged in"){
+                    location.href = "./member.html";
+                }
+              });
+        }
+
+
+        function register(){
+            var name = document.getElementById("name").value;
+            var email = document.getElementById("email").value;
+            var number = document.getElementById("number").value;
+
+            var member = {
+                "name": name,
+                "email": email,
+                "phone": number,
+            };
+
+
+            socket.emit('member sign', member);
+            socket.on('member sign', function(msg) {
+                console.log(msg);
+                if (msg === "member created"){
+                    location.href = "./member.html";
+                }
+              });
+        }
+    </script>
+</body>
+</html>

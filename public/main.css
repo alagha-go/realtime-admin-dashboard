@@ -1,0 +1,101 @@
+body{
+    background-color: ivory;
+    margin-left: 40%;
+}
+
+.admin-button{
+    margin-top: 100px;
+    color: white;
+    width: fit-content;
+    height: 30px;
+    border-radius: 5px;
+}
+
+.admin-button li{
+    text-decoration: none;
+    display: inline;
+}
+
+.member-button li a{
+    text-decoration: none;
+    background-color: blue;
+    color: white;
+    padding: 5px;
+    font-size: 20px;
+}
+
+.member-button{
+    margin-top: 100px;
+    color: white;
+    width: fit-content;
+    height: 30px;
+    border-radius: 5px;
+}
+
+.member-button li{
+    text-decoration: none;
+    display: inline;
+}
+
+.admin-button li a{
+    text-decoration: none;
+    background-color: blue;
+    color: white;
+    padding: 5px;
+    font-size: 20px;
+}
+
+#signup-foam{
+    display: none;
+    margin-top: 100px;
+    padding: 30px;
+    background-color: purple;
+    color: white;
+    border-radius: 10px;
+    width: fit-content;
+    height: 400px;
+}
+
+#login-foam{
+    margin-top: 100px;
+    padding: 30px;
+    background-color: purple;
+    color: white;
+    border-radius: 10px;
+    width: fit-content;
+    height: 400px;
+}
+
+input{
+    height: 30px;
+    border-radius: 5px;
+    width: 400px;
+    margin: 20px;
+}
+
+label{
+    font-size: 20px;
+
+}
+
+a{
+    background-color: blanchedalmond;
+    color: blue;
+    margin-left: 10px;
+    height: 35px;
+    font-size: 20px;
+    padding: 5px;
+    border-radius: 3px;
+    width: fit-content;
+    cursor: pointer;
+}
+
+button{
+    background-color: rgba(9, 255, 234, 0.979);
+    color: purple;
+    margin-left: 170px;
+    height: 30px;
+    border-width: 0px;
+    border-radius: 3px;
+    cursor: pointer;
+}

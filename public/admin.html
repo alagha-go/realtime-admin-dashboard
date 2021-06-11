@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./admin.css">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="main">
+
+<div>
+    <div class="admin-user">
+        <h1 >Admin Uers</h1>
+        <div class="admin-id">
+            <h3 id = "no-admins"></h3>
+            <p id = "admin-id">1</p>
+        </div>
+        <div class="admin-name">
+            <p id = "admin-name">Alagha</p>
+        </div>
+        <div class="admin-email">
+            <p id = "admin-email">alagha@gmail.com</p>
+        </div>
+        <div class="admin-number">
+            <p id = "admin-phone">072525</p>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+<div>
+
+        <div class="member-user">
+            <h1>Members</h1>
+            <div class="member">
+                <h3 id = "no-members"></h3>
+                <p id = "member-id"></p>
+            </div>
+            <div class="member">
+                <p id = "member-name"></p>
+            </div>
+            <div class="member">
+                <p id = "member-email"></p>
+            </div>
+            <div class="member">
+                <p id = "member-phone"></p>
+            </div>
+    </div>
+
+</div>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script type="text/javascript">
+    var socket = io();
+            request1 = "get me all the members";
+            request2 = "get me all the admins"
+            socket.emit('get members', request1);
+            socket.on('get members', function(members) {
+                if (members.length <= 0){
+                    document.getElementById("no-members").innerHTML = "No Members in our databases"
+                }else{
+                    members.forEach(function (member) {
+                        document.getElementById("member-id").innerHTML = "id: "+ member.id
+                        document.getElementById("member-name").innerHTML = "name: "+ member.name
+                        document.getElementById("member-email").innerHTML = "email: "+ member.email
+                        document.getElementById("member-phone").innerHTML = "phone: "+ member.phone
+                    });
+                }
+              });
+
+
+
+              socket.emit('get admins', request2);
+            socket.on('get admins', function(admins) {
+
+                if (admins.length <= 0){
+                    document.getElementById("no-admins").innerHTML = "No Admins in our databases"
+                }else{
+
+                    admins.forEach(function (admin) {
+                        document.getElementById("admin-id").innerHTML = "id: "+ admin.id
+                        document.getElementById("admin-name").innerHTML = "name: "+ admin.name
+                        document.getElementById("admin-email").innerHTML = "email: "+ admin.email
+                        document.getElementById("admin-phone").innerHTML = "phone: "+ admin.phone
+                    });
+                }
+              });
+
+
+
+              socket.on('notifications', function(msg) {
+                alert(msg);
+              });
+
+
+</script>
+</body>
+</html>
